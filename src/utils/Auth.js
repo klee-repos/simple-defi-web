@@ -36,8 +36,6 @@ export async function logout(user, cookies) {
     await user.setNetworkVersion("");
     await user.setNetworkName("");
     await user.setSettingsDialog(false);
-
-    console.log(user);
     cookies.set("connected", `false`);
     // debug
     console.log(`connected: ${user.walletAddress}`);

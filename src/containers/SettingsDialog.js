@@ -31,7 +31,8 @@ const ObserverSettingsDialog = observer(({ user, cookies }) => (
             logout(user, cookies);
           }}
         >
-          <LogoutIcon /> <span className="settings-button-text">Logout</span>
+          <LogoutIcon />
+          <span className="settings-button-text">Logout</span>
         </Button>
       </div>
     </DialogContent>

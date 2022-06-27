@@ -14,8 +14,20 @@ body {
   color: $default-text-color;
 }
 
-.button {
-  background-color: pink;
+h1 {
+  font-family: $header-font;
+  color: $default-text-color;
+  margin: 0 0 20px 0;
+  font-size: 20px;
+}
+
+.subheader {
+  font-family: $header-font;
+  color: $default-text-color;
+  opacity: 0.5;
+  font-weight: 600;
+  font-size: 14px;
+  // margin-bottom: 4px;
 }
 
 .main {
@@ -32,6 +44,7 @@ body {
   top: $navbar-height;
   height: calc(100vh - $navbar-height);
   width: calc(100% - $side-padding * 2);
+  overflow-y: auto;
   padding: 0 $side-padding 0 $side-padding;
 }
 
@@ -43,4 +56,30 @@ body {
 
 .settings-button-text {
   padding: 0 0 0 6px;
+}
+
+.input-container {
+  display: flex;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.bg-admin {
+  background-color: $red;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+// debugging
+
+.bg {
+  background-color: pink;
 }

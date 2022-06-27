@@ -1,7 +1,4 @@
-export const erc20ContractAddress =
-  "0x98626E0b4B59e0EDAF1145F6173b1A23552b2166";
-
-export const erc20abi = [
+export const erc20ABI = [
   {
     inputs: [
       {

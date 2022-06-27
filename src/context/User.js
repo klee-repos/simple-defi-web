@@ -14,11 +14,43 @@ class User {
   initialLoad = false;
   // dialogs
   settingsDialog = false;
-  // contracts
+  // erc20
   erc20Contract = {};
   erc20Name = "";
   erc20TotalSupply = "";
-  LendingContract = {};
+  erc20Decimals = 18;
+  erc20Symbol = "";
+  erc20Address = "";
+  // lending
+  lendingContract = {};
+  priceFeedAddress = "";
+  // snackbars
+  addTokenSuccessSnackbar = false;
+  errorSnackbar = false;
+
+  async setErrorSnackbar(errorSnackbar) {
+    this.errorSnackbar = errorSnackbar;
+  }
+
+  async setAddTokenSuccessSnackbar(addTokenSuccessSnackbar) {
+    this.addTokenSuccessSnackbar = addTokenSuccessSnackbar;
+  }
+
+  async setPriceFeedAddress(priceFeedAddress) {
+    this.priceFeedAddress = priceFeedAddress;
+  }
+
+  async setERC20Address(erc20Address) {
+    this.erc20Address = erc20Address;
+  }
+
+  async setERC20Symbol(erc20Symbol) {
+    this.erc20Symbol = erc20Symbol;
+  }
+
+  async setERC20Decimals(erc20Decimals) {
+    this.erc20Decimals = erc20Decimals;
+  }
 
   async setERC20Name(erc20Name) {
     this.erc20Name = erc20Name;
@@ -28,8 +60,8 @@ class User {
     this.erc20TotalSupply = erc20TotalSupply;
   }
 
-  async setLendingContract(LendingContract) {
-    this.LendingContract = LendingContract;
+  async setLendingContract(lendingContract) {
+    this.lendingContract = lendingContract;
   }
 
   async setERC20Contract(erc20Contract) {
