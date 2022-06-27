@@ -1,0 +1,11 @@
+// scss variables
+@import "./variables";
+
+.settings-dialog-title-container {
+  display: flex;
+}
+
+.settings-dialog-content-container {
+  display: flex;
+  justify-content: center;
+}

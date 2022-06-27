@@ -1,0 +1,37 @@
+// scss variables
+@import "./variables";
+
+.navbar-container {
+  display: flex;
+  position: fixed;
+  height: $navbar-height;
+  background-color: $navbar-bg-color;
+  width: calc(100% - $side-padding * 2);
+  padding: 0 $side-padding 0 $side-padding;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: $header-font;
+}
+
+.nav-network-container {
+  display: flex;
+  padding: 0 10px 0 0;
+  font-family: $header-font;
+  font-weight: 600;
+}
