@@ -5,22 +5,21 @@ import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 // internal
 import { primary } from "../css/muiThemes";
+import { getApprovedTokens } from "../utils/InitHelper";
 
 async function handleAddTokenSupport(user) {
   try {
-    let testTx = await user.lendingContract.owner();
-    console.log(testTx);
-
     let tx = await user.lendingContract.setAllowedToken(
       user.erc20Address,
       user.priceFeedAddress
     );
     let txReceipt = await tx.wait();
     console.log(txReceipt);
-    user.addTokenSuccessSnackbar(true);
+    await getApprovedTokens(user);
+    await user.setAddTokenSuccessSnackbar(true);
   } catch (e) {
     console.log(e);
-    user.setErrorSnackbar(true);
+    await user.setErrorSnackbar(true);
   }
 }
 

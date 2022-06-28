@@ -1,0 +1,28 @@
+// scss variables
+@import "./variables";
+
+.deposit-dialog-title-container {
+  display: flex;
+  height: 100%;
+}
+
+.deposit-dialog-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 20px 0 20px 0;
+}
+
+.deposit-content-row {
+  display: flex;
+}
+
+.deposit-content-container {
+  display: flex;
+}
+
+.deposit-content {
+  display: flex;
+  flex-direction: column;
+}

@@ -63,16 +63,34 @@ export async function getApprovedTokens(user) {
         signer
       );
       let name = await contract.name();
+      let address = contract.address;
       let symbol = await contract.symbol();
+      // total supply formatted
+      let decimals = await contract.decimals();
       let totalSupply = await contract.totalSupply();
       totalSupply = totalSupply.toString();
-      let decimals = await contract.decimals();
       totalSupply = totalSupply.substring(0, totalSupply.length - decimals);
+      // wallet amount formatted
+      let walletBalance = await contract.balanceOf(user.walletAddress);
+      walletBalance = walletBalance.toString();
+      walletBalance = walletBalance.substring(
+        0,
+        walletBalance.length - decimals
+      );
+      // deposit total
+      let depositTotal = await user.lendingContract.s_totalTokenDeposits(
+        approvedTokenAddresses[c]
+      );
+      depositTotal = depositTotal.toString();
+      depositTotal = depositTotal.substring(0, depositTotal.length - decimals);
       approvedTokens.push({
         name: name ? name : "",
+        address: address ? address : "",
         symbol: symbol ? symbol : "",
         totalSupply: totalSupply ? totalSupply : "",
         decimals: decimals ? decimals : "",
+        depositTotal: depositTotal ? depositTotal : "",
+        walletBalance: walletBalance ? walletBalance : "",
       });
     }
     await user.setApprovedTokens(approvedTokens);

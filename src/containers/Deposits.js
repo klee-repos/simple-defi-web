@@ -13,9 +13,10 @@ import AddTokenSupport from "./AddTokenSupport";
 import {
   ObserveAddTokenSuccessSnackbar,
   ObserveErrorSnackbar,
+  ObserveDepositSuccessSnackbar,
 } from "./Snackbars";
 
-function initialLoad(user, cookies) {
+function initialLoad(user, cookies, db) {
   if (user.initialLoad === false) {
     let hasConnected = cookies.get("connected");
     if (hasConnected === "false") {
@@ -56,6 +57,7 @@ function initialLoad(user, cookies) {
         </div>
         <SettingsDialog user={user} cookies={cookies} />
         <ObserveAddTokenSuccessSnackbar user={user} />
+        <ObserveDepositSuccessSnackbar user={user} />
         <ObserveErrorSnackbar user={user} />
       </>
     );
@@ -68,14 +70,14 @@ function initialLoad(user, cookies) {
   }
 }
 
-const ObeserverIntiailLoad = observer(({ user, cookies }) => (
-  <>{initialLoad(user, cookies)}</>
+const ObeserverIntiailLoad = observer(({ user, cookies, db }) => (
+  <>{initialLoad(user, cookies, db)}</>
 ));
 
-const Deposits = ({ user, cookies }) => {
+const Deposits = ({ user, cookies, db }) => {
   return (
     <div className="main">
-      <ObeserverIntiailLoad user={user} cookies={cookies} />
+      <ObeserverIntiailLoad user={user} cookies={cookies} db={db} />
     </div>
   );
 };

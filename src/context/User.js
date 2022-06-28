@@ -11,20 +11,47 @@ class User {
   chainId = "";
   networkVersion = 0;
   networkName = "";
+  // inputs
+  depositAmountInput = "";
   // state
   connectToWallet = false;
   getContractInfo = false;
   initialLoad = false;
   // dialogs
   settingsDialog = false;
+  depositDialog = false;
+  withdrawDialog = false;
   // lending
   lendingContract = {};
   priceFeedAddress = "";
   totalAllowedTokens = 0;
   approvedTokens = [];
+  // erc20
+  erc20Address = "";
   // snackbars
   addTokenSuccessSnackbar = false;
   errorSnackbar = false;
+  depositSuccessSnackbar = false;
+
+  async setDepositSuccessSnackbar(depositSuccessSnackbar) {
+    this.depositSuccessSnackbar = depositSuccessSnackbar;
+  }
+
+  async setDepositAmountInput(depositAmountInput) {
+    this.depositAmountInput = depositAmountInput;
+  }
+
+  async setDepositDialog(depositDialog) {
+    this.depositDialog = depositDialog;
+  }
+
+  async setWithdrawDialog(withdrawDialog) {
+    this.withdrawDialog = withdrawDialog;
+  }
+
+  async setERC20Address(erc20Address) {
+    this.erc20Address = erc20Address;
+  }
 
   async setIsContractOwner(isContractOwner) {
     this.isContractOwner = isContractOwner;

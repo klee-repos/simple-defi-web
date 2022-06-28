@@ -25,3 +25,15 @@ export const ObserveErrorSnackbar = observer(({ user }) => (
     anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
   />
 ));
+
+export const ObserveDepositSuccessSnackbar = observer(({ user }) => (
+  <Snackbar
+    open={user.depositSuccessSnackbar}
+    autoHideDuration={4000}
+    onClose={() => {
+      user.setDepositSuccessSnackbar(false);
+    }}
+    message="🎉 Deposit complete!"
+    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+  />
+));
