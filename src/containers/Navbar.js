@@ -4,13 +4,18 @@ import Button from "@mui/material/Button";
 // internal
 import { primary } from "../css/muiThemes";
 import "../css/navbar.scss";
-import { connectWeb3Wallet } from "../utils/Auth";
+import { connectWeb3Wallet, getApprovedTokens } from "../utils/InitHelper";
 
 const ObserveNetwork = observer(({ user }) => (
   <div className="nav-network-container">
     <span>{user.networkName}</span>
   </div>
 ));
+
+async function handleLogin(user, cookies) {
+  await connectWeb3Wallet(user, cookies);
+  await getApprovedTokens(user);
+}
 
 const ObserveLogin = observer(({ user, cookies }) => (
   <>
@@ -35,7 +40,7 @@ const ObserveLogin = observer(({ user, cookies }) => (
         variant="contained"
         className="button"
         onClick={() => {
-          connectWeb3Wallet(user, cookies);
+          handleLogin(user, cookies);
         }}
       >
         Sign Up / Login

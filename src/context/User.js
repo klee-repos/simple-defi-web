@@ -5,28 +5,46 @@ class User {
     makeAutoObservable(this);
   }
 
+  isContractOwner = false;
   walletAddress = "";
   provider = {};
   chainId = "";
   networkVersion = 0;
   networkName = "";
   // state
+  connectToWallet = false;
+  getContractInfo = false;
   initialLoad = false;
   // dialogs
   settingsDialog = false;
-  // erc20
-  erc20Contract = {};
-  erc20Name = "";
-  erc20TotalSupply = "";
-  erc20Decimals = 18;
-  erc20Symbol = "";
-  erc20Address = "";
   // lending
   lendingContract = {};
   priceFeedAddress = "";
+  totalAllowedTokens = 0;
+  approvedTokens = [];
   // snackbars
   addTokenSuccessSnackbar = false;
   errorSnackbar = false;
+
+  async setIsContractOwner(isContractOwner) {
+    this.isContractOwner = isContractOwner;
+  }
+
+  async setApprovedTokens(approvedTokens) {
+    this.approvedTokens = approvedTokens;
+  }
+
+  async setConnectToWallet(connectToWallet) {
+    this.connectToWallet = connectToWallet;
+  }
+
+  async setGetContractInfo(getContractInfo) {
+    this.getContractInfo = getContractInfo;
+  }
+
+  async setTotalAllowedTokens(totalAllowedTokens) {
+    this.totalAllowedTokens = totalAllowedTokens;
+  }
 
   async setErrorSnackbar(errorSnackbar) {
     this.errorSnackbar = errorSnackbar;
@@ -40,32 +58,8 @@ class User {
     this.priceFeedAddress = priceFeedAddress;
   }
 
-  async setERC20Address(erc20Address) {
-    this.erc20Address = erc20Address;
-  }
-
-  async setERC20Symbol(erc20Symbol) {
-    this.erc20Symbol = erc20Symbol;
-  }
-
-  async setERC20Decimals(erc20Decimals) {
-    this.erc20Decimals = erc20Decimals;
-  }
-
-  async setERC20Name(erc20Name) {
-    this.erc20Name = erc20Name;
-  }
-
-  async setERC20TotalSupply(erc20TotalSupply) {
-    this.erc20TotalSupply = erc20TotalSupply;
-  }
-
   async setLendingContract(lendingContract) {
     this.lendingContract = lendingContract;
-  }
-
-  async setERC20Contract(erc20Contract) {
-    this.erc20Contract = erc20Contract;
   }
 
   async setSettingsDialog(settingsDialog) {

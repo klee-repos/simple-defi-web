@@ -1,12 +1,13 @@
 // external
 import { observer } from "mobx-react-lite";
 import CircularProgress from "@mui/material/CircularProgress";
+import { v4 as uuidv4 } from "uuid";
 // internal
 import "../css/lending.scss";
 import { primary } from "../css/muiThemes";
 import Navbar from "./Navbar";
 import SettingsDialog from "./SettingsDialog";
-import { connectWeb3Wallet } from "../utils/Auth";
+import { connectWeb3Wallet, getApprovedTokens } from "../utils/InitHelper";
 import TokenCard from "./TokenCard";
 import AddTokenSupport from "./AddTokenSupport";
 import {
@@ -17,10 +18,14 @@ import {
 function initialLoad(user, cookies) {
   if (user.initialLoad === false) {
     let hasConnected = cookies.get("connected");
-    if (hasConnected === "true") {
-      connectWeb3Wallet(user, cookies);
-    } else {
+    if (hasConnected === "false") {
       user.setInitialLoad(true);
+    }
+    if (hasConnected === "true" && user.connectToWallet === false) {
+      connectWeb3Wallet(user, cookies);
+    }
+    if (user.connectToWallet === true) {
+      getApprovedTokens(user);
     }
   }
   if (user.initialLoad) {
@@ -28,10 +33,26 @@ function initialLoad(user, cookies) {
       <>
         <Navbar user={user} cookies={cookies} />
         <div className="content-container">
-          <div className="card-container">
-            <AddTokenSupport user={user} />
-            <TokenCard user={user} />
-          </div>
+          {user.walletAddress.length > 0 ? (
+            <div className="card-container">
+              {user.isContractOwner ? <AddTokenSupport user={user} /> : <></>}
+              {user.approvedTokens.length > 0 ? (
+                <>
+                  {user.approvedTokens.map((token) => {
+                    return (
+                      <TokenCard user={user} token={token} key={uuidv4()} />
+                    );
+                  })}
+                </>
+              ) : (
+                <div className="card">No approved tokens</div>
+              )}
+            </div>
+          ) : (
+            <div className="card-container">
+              <div className="card">Welcome. Login to continue.</div>
+            </div>
+          )}
         </div>
         <SettingsDialog user={user} cookies={cookies} />
         <ObserveAddTokenSuccessSnackbar user={user} />

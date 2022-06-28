@@ -64,7 +64,7 @@ const AddTokenSupport = ({ user }) => {
   return (
     <div className="card bg-admin margin-bottom">
       <div className="stats-row-container">
-        <h1>Add token support</h1>
+        <h1>🚨 Add token support</h1>
       </div>
       <div className="stats-row-container">
         <div className="input-container column-3-more">

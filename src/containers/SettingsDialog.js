@@ -8,7 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 // internal
 import "../css/settingsDialog.scss";
 import { primary } from "../css/muiThemes";
-import { logout } from "../utils/Auth";
+import { logout } from "../utils/InitHelper";
 
 const ObserverSettingsDialog = observer(({ user, cookies }) => (
   <Dialog

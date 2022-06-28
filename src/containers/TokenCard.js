@@ -3,25 +3,23 @@ import { observer } from "mobx-react-lite";
 // internal
 import TVLChart from "./TVLChart";
 
-const ObserveTokenName = observer(({ user }) => <span>{user.erc20Name}</span>);
+const ObserveTokenName = observer(({ token }) => <span>{token.name}</span>);
 
-const ObserveTokenSymbol = observer(({ user }) => (
-  <span>{user.erc20Symbol}</span>
-));
+const ObserveTokenSymbol = observer(({ token }) => <span>{token.symbol}</span>);
 
-const TokenCard = ({ user }) => {
+const TokenCard = ({ user, token }) => {
   return (
-    <div className="card">
+    <div className="card margin-bottom">
       <div className="stats-row-container">
         <div className="stats-container stats-left">
           <div className="stats-row-container two-row">
             <div className="stats-container two-column">
               <span className="subheader">Token</span>
-              <ObserveTokenName user={user} />
+              <ObserveTokenName token={token} />
             </div>
             <div className="stats-container two-column">
               <span className="subheader">Symbol</span>
-              <ObserveTokenSymbol user={user} />
+              <ObserveTokenSymbol token={token} />
             </div>
           </div>
           <div className="stats-row-container two-row">
