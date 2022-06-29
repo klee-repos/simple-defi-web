@@ -7,10 +7,9 @@ import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
 import _ from "lodash";
 // internal
-import { primary } from "../css/muiThemes";
-import { useEffect } from "react";
-import "../css/depositDialog.scss";
-import { getApprovedTokens } from "../utils/InitHelper";
+import { primary } from "../../css/muiThemes";
+import "../../css/depositDialog.scss";
+import { getApprovedTokens } from "../../utils/InitHelper";
 
 async function handleWithdraw(user, token) {
   let tx = await user.lendingContract.withdraw(

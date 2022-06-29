@@ -4,8 +4,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 // internal
-import { primary } from "../css/muiThemes";
-import { getApprovedTokens } from "../utils/InitHelper";
+import { primary } from "../../css/muiThemes";
+import { getApprovedTokens } from "../../utils/InitHelper";
 
 async function handleAddTokenSupport(user) {
   try {

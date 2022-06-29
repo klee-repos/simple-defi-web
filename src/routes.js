@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { initializeApp } from "firebase/app";
 // internal
-import Deposits from "./containers/Deposits";
+import Deposits from "./containers/deposits/Deposits";
 import User from "./context/User";
 // context
 const user = new User();

@@ -3,18 +3,18 @@ import { observer } from "mobx-react-lite";
 import CircularProgress from "@mui/material/CircularProgress";
 import { v4 as uuidv4 } from "uuid";
 // internal
-import "../css/lending.scss";
-import { primary } from "../css/muiThemes";
-import Navbar from "./Navbar";
-import SettingsDialog from "./SettingsDialog";
-import { connectWeb3Wallet, getApprovedTokens } from "../utils/InitHelper";
+import "../../css/lending.scss";
+import { primary } from "../../css/muiThemes";
+import Navbar from "../Navbar";
+import SettingsDialog from "../SettingsDialog";
+import { connectWeb3Wallet, getApprovedTokens } from "../../utils/InitHelper";
 import TokenCard from "./TokenCard";
 import AddTokenSupport from "./AddTokenSupport";
 import {
   ObserveAddTokenSuccessSnackbar,
   ObserveErrorSnackbar,
   ObserveDepositSuccessSnackbar,
-} from "./Snackbars";
+} from "../Snackbars";
 
 function initialLoad(user, cookies, db) {
   if (user.initialLoad === false) {

@@ -7,11 +7,10 @@ import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
 import _ from "lodash";
 // internal
-import { primary } from "../css/muiThemes";
-import { useEffect } from "react";
-import "../css/depositDialog.scss";
-import { getApprovedTokens } from "../utils/InitHelper";
-import { erc20ABI } from "../abis/ERC20ABI";
+import { primary } from "../../css/muiThemes";
+import "../../css/depositDialog.scss";
+import { getApprovedTokens } from "../../utils/InitHelper";
+import { erc20ABI } from "../../abis/ERC20ABI";
 
 const { REACT_APP_LENDING_ADDRESS } = process.env;
 
@@ -140,8 +139,6 @@ const ObserverDepositDrawer = observer(({ user, token }) => (
 ));
 
 const DepositDrawer = ({ user, token }) => {
-  useEffect(() => {}, []);
-
   return <ObserverDepositDrawer user={user} token={token} />;
 };
 

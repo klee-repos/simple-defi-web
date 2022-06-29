@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import _ from "lodash";
 // internal
 import TVLChart from "./TVLChart";
-import { primary } from "../css/muiThemes";
+import { primary } from "../../css/muiThemes";
 import DepositDrawer from "./DepositDrawer";
 import WithdrawDrawer from "./WithdrawDrawer";
 
@@ -61,20 +61,9 @@ const TokenCard = ({ user, token }) => {
               <ObserveDepositBalance token={token} />
             </div>
           </div>
+
           <div className="stats-row-container">
-            <div className="stats-container two-column">
-              <Button
-                variant="contained"
-                sx={{ width: "90%" }}
-                theme={primary}
-                onClick={() => {
-                  handleDeposit(user, token);
-                }}
-              >
-                Deposit
-              </Button>
-            </div>
-            <div className="stats-container two-column">
+            <div className="stats-container">
               <Button
                 variant="contained"
                 sx={{ width: "90%" }}
@@ -85,6 +74,30 @@ const TokenCard = ({ user, token }) => {
                 }}
               >
                 Withdraw
+              </Button>
+            </div>
+            <div className="stats-container">
+              <Button
+                variant="contained"
+                sx={{ width: "90%" }}
+                theme={primary}
+                color="secondary"
+                onClick={() => {
+                  handleDeposit(user, token);
+                }}
+              >
+                Deposit
+              </Button>
+            </div>
+
+            <div className="stats-container">
+              <Button
+                variant="contained"
+                sx={{ width: "90%" }}
+                theme={primary}
+                onClick={() => {}}
+              >
+                Borrow
               </Button>
             </div>
           </div>
