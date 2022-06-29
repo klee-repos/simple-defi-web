@@ -12,28 +12,6 @@ import { useEffect } from "react";
 import "../css/depositDialog.scss";
 import { getApprovedTokens } from "../utils/InitHelper";
 
-async function getWalletTokenBalance(user, token) {
-  try {
-    if (user.tokenDrawers[token.symbol]) {
-      let tokenBalance = await user.lendingContract.s_accountToTokenDeposits(
-        user.walletAddress,
-        token.address
-      );
-      tokenBalance = tokenBalance.toString();
-      tokenBalance = tokenBalance.substring(
-        0,
-        tokenBalance.length - token.decimals
-      );
-      let tokenDrawers = _.cloneDeep(user.tokenDrawers);
-      tokenDrawers[token.symbol].depositBalance = tokenBalance;
-      await user.setTokenDrawers(tokenDrawers);
-    }
-  } catch (e) {
-    console.log(e);
-    user.setErrorSnackbar(true);
-  }
-}
-
 async function handleWithdraw(user, token) {
   let tx = await user.lendingContract.withdraw(
     token.address,
@@ -79,10 +57,7 @@ const ObserverWithdrawDrawer = observer(({ user, token }) => (
             <div className="deposit-content">
               <span className="dialog-subheader">Deposit balance</span>
               <span>
-                {user.tokenDrawers[token.symbol]
-                  ? user.tokenDrawers[token.symbol].depositBalance
-                  : 0}{" "}
-                {token.symbol}
+                {token.depositBalance} {token.symbol}
               </span>
             </div>
           </div>
@@ -136,10 +111,6 @@ const ObserverWithdrawDrawer = observer(({ user, token }) => (
 ));
 
 const WithdrawDrawer = ({ user, token }) => {
-  useEffect(() => {
-    getWalletTokenBalance(user, token);
-  }, []);
-
   return <ObserverWithdrawDrawer user={user} token={token} />;
 };
 

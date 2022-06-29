@@ -84,6 +84,16 @@ export async function getApprovedTokens(user) {
       );
       depositTotal = depositTotal.toString();
       depositTotal = depositTotal.substring(0, depositTotal.length - decimals);
+      // deposit token balance
+      let depositBalance = await user.lendingContract.s_accountToTokenDeposits(
+        user.walletAddress,
+        approvedTokenAddresses[c]
+      );
+      depositBalance = depositBalance.toString();
+      depositBalance = depositBalance.substring(
+        0,
+        depositBalance.length - decimals
+      );
       approvedTokens.push({
         name: name ? name : "",
         address: address ? address : "",
@@ -92,6 +102,7 @@ export async function getApprovedTokens(user) {
         decimals: decimals ? decimals : "",
         depositTotal: depositTotal ? depositTotal : "",
         walletBalance: walletBalance ? walletBalance : "",
+        depositBalance: depositBalance ? depositBalance : "",
       });
       tokenDrawers[symbol] = {
         depositDrawer: false,
@@ -100,7 +111,6 @@ export async function getApprovedTokens(user) {
     }
     await user.setApprovedTokens(approvedTokens);
     await user.setTokenDrawers(tokenDrawers);
-    console.log(approvedTokens, tokenDrawers);
   }
   await user.setInitialLoad(true);
 }

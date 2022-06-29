@@ -12,9 +12,15 @@ const ObserveTokenName = observer(({ token }) => <span>{token.name}</span>);
 
 const ObserveTokenSymbol = observer(({ token }) => <span>{token.symbol}</span>);
 
-const ObserveTokenTVL = observer(({ token }) => (
+const ObserveTokenTL = observer(({ token }) => (
   <span>
     {token.depositTotal > 0 ? token.depositTotal : 0} {token.symbol}
+  </span>
+));
+
+const ObserveDepositBalance = observer(({ token }) => (
+  <span>
+    {token.depositBalance > 0 ? token.depositBalance : 0} {token.symbol}
   </span>
 ));
 
@@ -22,7 +28,6 @@ async function handleDeposit(user, token) {
   let tokenDrawers = _.cloneDeep(user.tokenDrawers);
   tokenDrawers[token.symbol].depositDrawer = true;
   await user.setTokenDrawers(tokenDrawers);
-  // await user.setDepositDrawer(true);
 }
 
 async function handleWithdraw(user, token) {
@@ -49,7 +54,11 @@ const TokenCard = ({ user, token }) => {
           <div className="stats-row-container margin-bottom">
             <div className="stats-container two-column">
               <span className="subheader">Total deposits</span>
-              <ObserveTokenTVL token={token} />
+              <ObserveTokenTL token={token} />
+            </div>
+            <div className="stats-container two-column">
+              <span className="subheader">Your deposits</span>
+              <ObserveDepositBalance token={token} />
             </div>
           </div>
           <div className="stats-row-container">
