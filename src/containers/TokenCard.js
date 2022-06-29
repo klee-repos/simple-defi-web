@@ -1,10 +1,12 @@
 // external
 import { observer } from "mobx-react-lite";
 import Button from "@mui/material/Button";
+import _ from "lodash";
 // internal
 import TVLChart from "./TVLChart";
 import { primary } from "../css/muiThemes";
-import DepositDialog from "./DepositDialog";
+import DepositDrawer from "./DepositDrawer";
+import WithdrawDrawer from "./WithdrawDrawer";
 
 const ObserveTokenName = observer(({ token }) => <span>{token.name}</span>);
 
@@ -16,8 +18,17 @@ const ObserveTokenTVL = observer(({ token }) => (
   </span>
 ));
 
-async function handleDeposit(user) {
-  await user.setDepositDialog(true);
+async function handleDeposit(user, token) {
+  let tokenDrawers = _.cloneDeep(user.tokenDrawers);
+  tokenDrawers[token.symbol].depositDrawer = true;
+  await user.setTokenDrawers(tokenDrawers);
+  // await user.setDepositDrawer(true);
+}
+
+async function handleWithdraw(user, token) {
+  let tokenDrawers = _.cloneDeep(user.tokenDrawers);
+  tokenDrawers[token.symbol].withdrawDrawer = true;
+  await user.setTokenDrawers(tokenDrawers);
 }
 
 const TokenCard = ({ user, token }) => {
@@ -48,7 +59,7 @@ const TokenCard = ({ user, token }) => {
                 sx={{ width: "90%" }}
                 theme={primary}
                 onClick={() => {
-                  handleDeposit(user);
+                  handleDeposit(user, token);
                 }}
               >
                 Deposit
@@ -60,6 +71,9 @@ const TokenCard = ({ user, token }) => {
                 sx={{ width: "90%" }}
                 theme={primary}
                 color="secondary"
+                onClick={() => {
+                  handleWithdraw(user, token);
+                }}
               >
                 Withdraw
               </Button>
@@ -72,7 +86,8 @@ const TokenCard = ({ user, token }) => {
           </div>
         </div>
       </div>
-      <DepositDialog user={user} token={token} />
+      <DepositDrawer user={user} token={token} />
+      <WithdrawDrawer user={user} token={token} />
     </div>
   );
 };

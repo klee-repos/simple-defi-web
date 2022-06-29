@@ -13,14 +13,16 @@ class User {
   networkName = "";
   // inputs
   depositAmountInput = "";
+  withdrawAmountInput = "";
   // state
   connectToWallet = false;
   getContractInfo = false;
   initialLoad = false;
+  selectedTokenWalletBalance = 0;
   // dialogs
   settingsDialog = false;
-  depositDialog = false;
-  withdrawDialog = false;
+  // drawers
+  tokenDrawers = {};
   // lending
   lendingContract = {};
   priceFeedAddress = "";
@@ -32,21 +34,30 @@ class User {
   addTokenSuccessSnackbar = false;
   errorSnackbar = false;
   depositSuccessSnackbar = false;
+  withdrawSuccessSnackbar = false;
+
+  async setTokenDrawers(tokenDrawers) {
+    this.tokenDrawers = tokenDrawers;
+  }
+
+  async setSelectedTokenWalletBalance(selectedTokenWalletBalance) {
+    this.selectedTokenWalletBalance = selectedTokenWalletBalance;
+  }
+
+  async setWithdrawSuccessSnackbar(withdrawSuccessSnackbar) {
+    this.withdrawSuccessSnackbar = withdrawSuccessSnackbar;
+  }
 
   async setDepositSuccessSnackbar(depositSuccessSnackbar) {
     this.depositSuccessSnackbar = depositSuccessSnackbar;
   }
 
+  async setWithdrawAmountInput(withdrawAmountInput) {
+    this.withdrawAmountInput = withdrawAmountInput;
+  }
+
   async setDepositAmountInput(depositAmountInput) {
     this.depositAmountInput = depositAmountInput;
-  }
-
-  async setDepositDialog(depositDialog) {
-    this.depositDialog = depositDialog;
-  }
-
-  async setWithdrawDialog(withdrawDialog) {
-    this.withdrawDialog = withdrawDialog;
   }
 
   async setERC20Address(erc20Address) {

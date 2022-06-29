@@ -9,7 +9,7 @@ export const ObserveAddTokenSuccessSnackbar = observer(({ user }) => (
     onClose={() => {
       user.setAddTokenSuccessSnackbar(false);
     }}
-    message="👍 token successfully added"
+    message="👍 Token successfully added"
     anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
   />
 ));
@@ -21,7 +21,7 @@ export const ObserveErrorSnackbar = observer(({ user }) => (
     onClose={() => {
       user.setErrorSnackbar(false);
     }}
-    message="😵 an error has occurred"
+    message="😵 An error has occurred"
     anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
   />
 ));
@@ -34,6 +34,18 @@ export const ObserveDepositSuccessSnackbar = observer(({ user }) => (
       user.setDepositSuccessSnackbar(false);
     }}
     message="🎉 Deposit complete!"
+    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+  />
+));
+
+export const ObserveWithdrawSuccessSnackbar = observer(({ user }) => (
+  <Snackbar
+    open={user.withdrawSuccessSnackbar}
+    autoHideDuration={4000}
+    onClose={() => {
+      user.setWithdrawSuccessSnackbar(false);
+    }}
+    message="🎉 Withdraw complete!"
     anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
   />
 ));

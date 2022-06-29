@@ -19,7 +19,7 @@ import {
 function initialLoad(user, cookies, db) {
   if (user.initialLoad === false) {
     let hasConnected = cookies.get("connected");
-    if (hasConnected === "false") {
+    if (hasConnected === "false" || !hasConnected) {
       user.setInitialLoad(true);
     }
     if (hasConnected === "true" && user.connectToWallet === false) {

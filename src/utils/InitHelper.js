@@ -49,6 +49,7 @@ export async function logout(user, cookies) {
 export async function getApprovedTokens(user) {
   let approvedTokenAddresses = [];
   let approvedTokens = [];
+  let tokenDrawers = {};
   if (user.totalAllowedTokens > 0) {
     for (let i = 0; i < user.totalAllowedTokens; i++) {
       let tokenAddress = await user.lendingContract.s_allowedTokens(i);
@@ -92,9 +93,14 @@ export async function getApprovedTokens(user) {
         depositTotal: depositTotal ? depositTotal : "",
         walletBalance: walletBalance ? walletBalance : "",
       });
+      tokenDrawers[symbol] = {
+        depositDrawer: false,
+        withdrawDrawer: false,
+      };
     }
     await user.setApprovedTokens(approvedTokens);
-    console.log(approvedTokens);
+    await user.setTokenDrawers(tokenDrawers);
+    console.log(approvedTokens, tokenDrawers);
   }
   await user.setInitialLoad(true);
 }
